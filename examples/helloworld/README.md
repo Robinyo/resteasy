@@ -16,7 +16,7 @@ To build the WAR and run some tests:
 
 To run Jetty:
 
-`mvn org.eclipse.jetty:jetty-maven-plugin:9.0.6.v20130930:run`
+`mvn jetty:run`
 
 Hello World:
 
@@ -24,4 +24,4 @@ Hello World:
 
 To stop Jetty:
 
-`mvn org.eclipse.jetty:jetty-maven-plugin:9.0.6.v20130930:stop`
+`mvn jetty:stop`
