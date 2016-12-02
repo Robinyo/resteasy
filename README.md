@@ -10,4 +10,4 @@ System Requirements:
 Building the project:
 ---------------------
 
-git clone https://github.com/Robinyo/resteasy.git
+`git clone https://github.com/Robinyo/resteasy.git`

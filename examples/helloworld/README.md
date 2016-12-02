@@ -10,18 +10,18 @@ System Requirements:
 Building the project:
 ---------------------
 
-mvn clean install
+To build the WAR and run some tests:
 
-This will build the WAR and run some tests.
+`mvn clean install`
 
 To run Jetty:
 
-mvn org.eclipse.jetty:jetty-maven-plugin:9.0.6.v20130930:run
+`mvn org.eclipse.jetty:jetty-maven-plugin:9.0.6.v20130930:run`
 
 Hello World:
 
-http://localhost:8080/hello/World
+`http://localhost:8080/hello/World`
 
 To stop Jetty:
 
-mvn org.eclipse.jetty:jetty-maven-plugin:9.0.6.v20130930:stop
+`mvn org.eclipse.jetty:jetty-maven-plugin:9.0.6.v20130930:stop`
