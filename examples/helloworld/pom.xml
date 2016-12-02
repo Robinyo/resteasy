@@ -11,14 +11,14 @@
     <packaging>war</packaging>
     
     <name>helloworld</name>
-	<description>Getting started with RESTEasy and Jetty</description>
+	<description>Getting started with RESTEasy</description>
 	<url>https://github.com/Robinyo</url>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         
-        <!-- Component versions -->
+        <!-- Dependency versions -->
         <resteasy.version>3.0.19.Final</resteasy.version>
         <junit.version>4.11</junit.version>
         
@@ -61,11 +61,13 @@
             <artifactId>resteasy-jaxrs</artifactId>
             <version>${resteasy.version}</version>
         </dependency>
+         <!--
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>async-http-servlet-3.0</artifactId>
             <version>${resteasy.version}</version>
         </dependency>
+        -->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-servlet-initializer</artifactId>
@@ -82,7 +84,7 @@
         
     </dependencies>
     
-        <build>
+    <build>
         <finalName>helloworld</finalName>
         <plugins>
             <plugin>
