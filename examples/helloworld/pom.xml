@@ -121,9 +121,9 @@
                         <contextPath>/</contextPath>
                     </webApp>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <stopKey>foo</stopKey>
-                    <stopPort>9999</stopPort>
-                    <stopWait>1</stopWait>
+                    <stopKey>alpha</stopKey>
+                    <stopPort>9099</stopPort>
+                    <stopWait>2</stopWait>
                 </configuration>
                 <executions>
                     <execution>
