@@ -26,6 +26,7 @@
         <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
         <source.version>1.8</source.version>
         <target.version>1.8</target.version>
+        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <jetty-maven-plugin.version>9.0.6.v20130930</jetty-maven-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
     </properties>
@@ -61,13 +62,6 @@
             <artifactId>resteasy-jaxrs</artifactId>
             <version>${resteasy.version}</version>
         </dependency>
-         <!--
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>async-http-servlet-3.0</artifactId>
-            <version>${resteasy.version}</version>
-        </dependency>
-        -->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-servlet-initializer</artifactId>
@@ -100,7 +94,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
+                <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
@@ -151,15 +145,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>${maven-deploy-plugin.version}</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
             </plugin>
             
         </plugins>
