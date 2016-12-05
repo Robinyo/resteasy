@@ -23,16 +23,20 @@ public class Main {
     
     public void run() throws Exception
     {
+        int port = 8080;
+        Server server = new Server(port);
+        
     	ServletHolder servletHolder = new ServletHolder(new HttpServletDispatcher());
 		servletHolder.setInitParameter("javax.ws.rs.core.Application",
 				                       "org.robferguson.resteasy.examples.fatjar.FatJarApplication");
 
-		ServletContextHandler servletCtxHandler = new ServletContextHandler();
-		servletCtxHandler.addServlet(servletHolder, "/");
+		ServletContextHandler context = new ServletContextHandler();
+		context.addServlet(servletHolder, "/");
 
-		Server server = new Server(8080);
-		server.setHandler(servletCtxHandler);
+		server.setHandler(context);
 		server.start();
 		server.join();
     } 
 }
+
+// See: https://github.com/jetty-project/embedded-jetty-uber-jar/blob/master/src/main/java/jetty/uber/ServerMain.java

@@ -21,7 +21,6 @@
         <!-- Dependency versions -->
         <resteasy.version>3.0.19.Final</resteasy.version>
         <junit.version>4.11</junit.version>
-        
         <jetty.version>9.3.14.v20161028</jetty.version>
         
         <!-- Plugin versions -->
@@ -34,13 +33,11 @@
  
     </properties>
     
-    <!--
     <scm>
-        <url> </url>
-        <developerConnection> </developerConnection>
+        <url>scm:git:https://github.com/Robinyo/resteasy</url>
+        <developerConnection>scm:git:git@github.com:Robinyo/resteasy.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
-    -->
 
     <licenses>
         <license>
@@ -79,7 +76,7 @@
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-webapp</artifactId>
+            <artifactId>jetty-servlet</artifactId>
             <version>${jetty.version}</version>
         </dependency>
 
@@ -94,9 +91,7 @@
     </dependencies>
     
     <build>
-        <!-- 
-        <finalName>fatjar</finalName>
-        -->
+        <finalName>fatjar-${version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
