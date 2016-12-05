@@ -21,7 +21,6 @@
     </license>
   </licenses>
   <build>
-    <finalName>fatjar</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -55,7 +54,7 @@
               <transformers>
                 <transformer />
                 <transformer>
-                  <mainClass>org.robferguson.resteasy.examples.fatjar.FatJarApplication</mainClass>
+                  <mainClass>org.robferguson.resteasy.examples.fatjar.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>

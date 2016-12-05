@@ -10,18 +10,14 @@ System Requirements:
 Building the example project:
 -----------------------------
 
-To build the WAR and run some tests:
+To build the fat JAR and run some tests:
 
 `mvn clean install`
 
-To run Jetty:
+To run:
 
-`mvn jetty:run`
+`java -jar target/fatjar-1.0-SNAPSHOT.jar`
 
 Hello World:
 
 `http://localhost:8080/hello/World`
-
-To stop Jetty:
-
-`mvn jetty:stop`

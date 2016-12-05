@@ -59,7 +59,7 @@
     
     <dependencies>
     
-        <!-- Runtime dependencies -->
+        <!-- RESTEasy runtime dependencies -->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
@@ -71,6 +71,7 @@
             <version>${resteasy.version}</version>
         </dependency>
         
+        <!-- Jetty runtime dependencies -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -79,11 +80,6 @@
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
-            <version>${jetty.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-annotations</artifactId>
             <version>${jetty.version}</version>
         </dependency>
 
@@ -98,7 +94,9 @@
     </dependencies>
     
     <build>
+        <!-- 
         <finalName>fatjar</finalName>
+        -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -150,7 +148,7 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.robferguson.resteasy.examples.fatjar.FatJarApplication</mainClass>
+                                    <mainClass>org.robferguson.resteasy.examples.fatjar.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
