@@ -92,7 +92,7 @@
     </dependencies>
     
     <build>
-        <finalName>fatjar-${version}</finalName>
+        <finalName>fatjar-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -25,7 +25,7 @@
     <url>scm:git:https://github.com/Robinyo/resteasy</url>
   </scm>
   <build>
-    <finalName>fatjar-${version}</finalName>
+    <finalName>fatjar-${project.version}</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
