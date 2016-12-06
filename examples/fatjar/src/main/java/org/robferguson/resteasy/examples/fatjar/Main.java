@@ -39,4 +39,6 @@ public class Main {
     } 
 }
 
-// See: https://github.com/jetty-project/embedded-jetty-uber-jar/blob/master/src/main/java/jetty/uber/ServerMain.java
+// * Jetty Docs: <a href="https://www.eclipse.org/jetty/documentation/9.3.x/embedding-jetty.html" target="_blank">Embedding Jetty</a>
+// * Jetty Project (GitHub): <a href="https://github.com/jetty-project/embedded-jetty-uber-jar" target="_blank">Example of an Uber JAR (Fat JAR) to start a server using Embedded Jetty</a>
+// * Jetty Project (GitHub): <a href="https://github.com/jetty-project/embedded-jetty-cookbook" target="_blank">Short examples of various features of Embedded Jetty</a>
