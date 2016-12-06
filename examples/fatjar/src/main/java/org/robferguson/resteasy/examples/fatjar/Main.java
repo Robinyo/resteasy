@@ -27,7 +27,7 @@ public class Main {
         Server server = new Server(port);
         
     	ServletHolder servletHolder = new ServletHolder(new HttpServletDispatcher());
-		servletHolder.setInitParameter("javax.ws.rs.core.Application",
+		servletHolder.setInitParameter("javax.ws.rs.Application",
 				                       "org.robferguson.resteasy.examples.fatjar.FatJarApplication");
 
 		ServletContextHandler context = new ServletContextHandler();

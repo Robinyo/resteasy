@@ -20,6 +20,10 @@
       <url>http://www.opensource.org/licenses/mit-license.php</url>
     </license>
   </licenses>
+  <scm>
+    <developerConnection>scm:git:git@github.com:Robinyo/resteasy.git</developerConnection>
+    <url>scm:git:https://github.com/Robinyo/resteasy</url>
+  </scm>
   <build>
     <finalName>fatjar-${version}</finalName>
     <plugins>
@@ -110,6 +114,7 @@
     <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
     <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <servlet-api.version>3.1.0</servlet-api.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <resteasy.version>3.0.19.Final</resteasy.version>
   </properties>
