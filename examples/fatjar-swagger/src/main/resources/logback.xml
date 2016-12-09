@@ -1,19 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-   <!-- encoders are assigned the type
-        ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
-    <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-    </encoder>
-  </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+      <!-- encoders are assigned the type
+           ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+      <encoder>
+        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+      </encoder>
+    </appender>
+
+    <root level="INFO">
+      <appender-ref ref="STDOUT" />
+    </root>
   
-  <logger name="org.eclipse.jetty" level="debug" />
+    <logger name="org.eclipse.jetty" level="INFO" />
   
-  <root level="info">
-    <appender-ref ref="STDOUT" />
-  </root>
+    <!-- 
+    
+    WARN: For events serious enough to inform and log, but not fatal.
+    INFO: Informational events.
+    DEBUG: Debugging events (very noisy).
+    IGNORE: Exception events that you can safely ignore, but useful for some people.
+            You might see this level as DEBUG under some Java logging framework configurations,
+            where it retains the ignore phrase somewhere in the logging.
+            
+    Note: Jetty logging produces no FATAL or SEVERE events.
+    
+    -->
+
+    <!-- Logs all activity by the core RESTEasy implementation -->
+    <logger name="org.jboss.resteasy.core" level="INFO" />
+    
+    <!-- Logs all activity by RESTEasy entity providers -->
+    <logger name="org.jboss.resteasy.plugins.providers" level="INFO" />
+     
+    <!-- Logs all activity by the RESTEasy server implementation -->
+    <logger name="org.jboss.resteasy.plugins.server" level="INFO" />   
+         
+    <!-- Logs all activity by JAX-RS implementing classes -->
+    <logger name="org.jboss.resteasy.specimpl" level="INFO" />   
+    
+    <!-- Logs all activity by the RESTEasy mock framework -->
+    <logger name="org.jboss.resteasy.mock" level="INFO" />  
 
 </configuration>
     
