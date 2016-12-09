@@ -7,14 +7,16 @@ import javax.ws.rs.core.Application;
 
 import org.robferguson.resteasy.examples.fatjar.resource.MessageResource;
 
-import io.swagger.jaxrs.config.BeanConfig;
-import io.swagger.jaxrs.listing.ApiListingResource;
-import io.swagger.jaxrs.listing.SwaggerSerializers;
+// import io.swagger.jaxrs.config.BeanConfig;
+// import io.swagger.jaxrs.listing.ApiListingResource;
+// import io.swagger.jaxrs.listing.SwaggerSerializers;
 
-@ApplicationPath("")
+@ApplicationPath("/")
 public class FatJarApplication extends Application {
 	
 	public FatJarApplication() {
+		
+		/*
 		
 		BeanConfig beanConfig = new BeanConfig();
         beanConfig.setVersion("1.0.2");
@@ -23,19 +25,10 @@ public class FatJarApplication extends Application {
         beanConfig.setBasePath("/");
         beanConfig.setResourcePackage("io.swagger.resources");
         beanConfig.setScan(true);
+        
+        */
 	}
     
-	/*
-	
-	public Set<Class<?>> getClasses() {
-		HashSet<Class<?>> set = new HashSet<Class<?>>();
-		set.add(MessageResource.class);
-		set.add(ApiListingResource.class);
-        set.add(SwaggerSerializers.class);
-		return set;
-	}
-	
-	*/
 	
 	@Override
 	public Set<Object> getSingletons() {
@@ -44,8 +37,8 @@ public class FatJarApplication extends Application {
 		
 		set.add(new MessageResource());
 		
-		set.add(new ApiListingResource());
-		set.add(new SwaggerSerializers());
+		// set.add(new ApiListingResource());
+		// set.add(new SwaggerSerializers());
 		
         return set;
 	}

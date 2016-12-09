@@ -3,16 +3,22 @@ package org.robferguson.resteasy.examples.fatjar;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+
+import org.eclipse.jetty.util.log.Log;
+import org.eclipse.jetty.util.log.Slf4jLog;
+
 import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
 
 public class Main {
-	
+
 	public Main() {}
 	
     public static void main( String[] args ) throws Exception
     {
         try
         {
+        	Log.setLog(new Slf4jLog());
+
             new Main().run();
         }
         catch (Throwable t)
@@ -23,22 +29,26 @@ public class Main {
     
     public void run() throws Exception
     {
-        int port = 8080;
-        Server server = new Server(port);
-        
-    	ServletHolder servletHolder = new ServletHolder(new HttpServletDispatcher());
-		servletHolder.setInitParameter("javax.ws.rs.Application",
-				                       "org.robferguson.resteasy.examples.fatjar.FatJarApplication");
+    	int port = 8080;
+    	
+    	// setup Application context
+    	ServletContextHandler context = new ServletContextHandler();
+    	context.setContextPath("/");
 
-		ServletContextHandler context = new ServletContextHandler();
-		context.addServlet(servletHolder, "/");
+    	// setup JAX-RS (RESTEasy) resources
+    	ServletHolder apiServlet = new ServletHolder(new HttpServletDispatcher());
+    	apiServlet .setInitOrder(1);
+    	apiServlet .setInitParameter("javax.ws.rs.Application",
+    	   "org.robferguson.resteasy.examples.fatjar.FatJarApplication");
+    	
+    	// context.addServlet(apiServlet , "/api/*");
+    	context.addServlet(apiServlet , "/*");
+    	
 
-		server.setHandler(context);
+        final Server server = new Server(port);
+        server.setHandler(context);
 		server.start();
 		server.join();
-    } 
+    }   
 }
 
-// * Jetty Docs: <a href="https://www.eclipse.org/jetty/documentation/9.3.x/embedding-jetty.html" target="_blank">Embedding Jetty</a>
-// * Jetty Project (GitHub): <a href="https://github.com/jetty-project/embedded-jetty-uber-jar" target="_blank">Example of an Uber JAR (Fat JAR) to start a server using Embedded Jetty</a>
-// * Jetty Project (GitHub): <a href="https://github.com/jetty-project/embedded-jetty-cookbook" target="_blank">Short examples of various features of Embedded Jetty</a>

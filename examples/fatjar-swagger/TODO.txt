@@ -1,0 +1,107 @@
+package org.robferguson.resteasy.examples.fatjar;
+
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.ContextHandler;
+import org.eclipse.jetty.server.handler.DefaultHandler;
+import org.eclipse.jetty.server.handler.HandlerList;
+import org.eclipse.jetty.server.handler.ResourceHandler;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+
+import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
+
+import io.swagger.jaxrs.config.BeanConfig;
+
+public class Main {
+	
+	private static final int PORT = 8080;
+	
+	public Main() {}
+	
+    public static void main( String[] args ) throws Exception
+    {
+        try
+        {
+            new Main().run();
+        }
+        catch (Throwable t)
+        {
+            t.printStackTrace();
+        }
+    }
+    
+    public void run() throws Exception
+    {
+    	final HandlerList handlers = new HandlerList();
+    	
+    	configureSwagger();
+
+        handlers.addHandler( applicationContextHandler() );
+        handlers.addHandler( swaggerUiContextHandler() );
+        handlers.addHandler( new DefaultHandler() );
+        
+        final Server server = new Server(PORT);
+		server.setHandler(handlers);
+		server.start();
+		server.join();
+    }
+    
+    private static void configureSwagger()
+    {
+    	BeanConfig beanConfig = new BeanConfig();
+        beanConfig.setVersion("1.0.2");
+        beanConfig.setSchemes(new String[]{"http"});
+        beanConfig.setHost("localhost:8080");
+        beanConfig.setBasePath("/");
+        beanConfig.setResourcePackage("io.swagger.resources");
+        beanConfig.setScan(true);
+    }
+    
+    private static ServletContextHandler applicationContextHandler()
+    {
+    	final ServletHolder servletHolder = new ServletHolder(new HttpServletDispatcher());
+		servletHolder.setInitParameter("javax.ws.rs.Application",
+				                       "org.robferguson.resteasy.examples.fatjar.FatJarApplication");
+
+		final ServletContextHandler context = new ServletContextHandler();
+		context.setContextPath( "/" );
+		context.addServlet(servletHolder, "/*");
+		
+        return context;
+    }
+    
+    private static ContextHandler swaggerUiContextHandler() throws Exception
+    {
+    	final ResourceHandler resourceHandler = new ResourceHandler();
+    	resourceHandler.setResourceBase( Main.class.getClassLoader().getResource( "swagger-ui" ).toURI().toString() );
+        
+        final ContextHandler context = new ContextHandler();
+        context.setContextPath( "/docs/" );
+        context.setHandler( resourceHandler );
+        
+        return context;
+    }
+}
+
+/*
+
+    	ServletHolder servletHolder = new ServletHolder(new HttpServletDispatcher());
+		servletHolder.setInitParameter("javax.ws.rs.Application",
+				                       "org.robferguson.resteasy.examples.fatjar.FatJarApplication");
+
+		ServletContextHandler context = new ServletContextHandler();
+		context.addServlet(servletHolder, "/*");
+
+		server.setHandler(context);
+
+
+
+
+ */
+
+
+
+
+// * Jetty Docs: <a href="https://www.eclipse.org/jetty/documentation/9.3.x/embedding-jetty.html" target="_blank">Embedding Jetty</a>
+// * Jetty Project (GitHub): <a href="https://github.com/jetty-project/embedded-jetty-uber-jar" target="_blank">Example of an Uber JAR (Fat JAR) to start a server using Embedded Jetty</a>
+// * Jetty Project (GitHub): <a href="https://github.com/jetty-project/embedded-jetty-cookbook" target="_blank">Short examples of various features of Embedded Jetty</a>
