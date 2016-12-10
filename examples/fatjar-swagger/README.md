@@ -37,3 +37,8 @@ Swagger:
 Swagger UI:
 
 `http://localhost:8080`
+
+References:
+-----------
+
+- https://github.com/swagger-api/swagger-core/wiki/Swagger-Core-RESTEasy-2.X-Project-Setup-1.5

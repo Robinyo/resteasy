@@ -42,12 +42,11 @@ public class FatJarApplication extends Application {
         beanConfig.setHost("localhost:8080");
         beanConfig.setBasePath("/api");
         beanConfig.setResourcePackage(MessageResource.class.getPackage().getName());
-        beanConfig.setTitle("Fat JAR, Swagger and Swagger UI Example");
-        beanConfig.setDescription("Hello World API to demonstrate Swagger with RESTEasy in an "
-                + "embedded Jetty instance, with no web.xml.");
+        beanConfig.setTitle("RESTEasy, Embedded Jetty, Fat JAR, Swagger and Swagger UI Example");
+        beanConfig.setDescription("Hello World API to demonstrate Swagger and Swagger UI with RESTEasy in an "
+                + "embedded Jetty instance, packaged in a Fat JAR with no web.xml.");
         beanConfig.setScan(true);
     }
 }
 
-// See:
 // https://github.com/swagger-api/swagger-core/wiki/Swagger-Core-RESTEasy-2.X-Project-Setup-1.5
