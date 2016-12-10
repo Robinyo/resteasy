@@ -48,5 +48,3 @@ public class FatJarApplication extends Application {
         beanConfig.setScan(true);
     }
 }
-
-// https://github.com/swagger-api/swagger-core/wiki/Swagger-Core-RESTEasy-2.X-Project-Setup-1.5
