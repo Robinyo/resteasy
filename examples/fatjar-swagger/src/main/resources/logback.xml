@@ -29,19 +29,19 @@
     -->
 
     <!-- Logs all activity by the core RESTEasy implementation -->
-    <logger name="org.jboss.resteasy.core" level="INFO" />
+    <logger name="org.jboss.resteasy.core" level="DEBUG" />
     
     <!-- Logs all activity by RESTEasy entity providers -->
-    <logger name="org.jboss.resteasy.plugins.providers" level="INFO" />
+    <logger name="org.jboss.resteasy.plugins.providers" level="DEBUG" />
      
     <!-- Logs all activity by the RESTEasy server implementation -->
-    <logger name="org.jboss.resteasy.plugins.server" level="INFO" />   
+    <logger name="org.jboss.resteasy.plugins.server" level="DEBUG" />   
          
     <!-- Logs all activity by JAX-RS implementing classes -->
-    <logger name="org.jboss.resteasy.specimpl" level="INFO" />   
+    <logger name="org.jboss.resteasy.specimpl" level="DEBUG" />   
     
     <!-- Logs all activity by the RESTEasy mock framework -->
-    <logger name="org.jboss.resteasy.mock" level="INFO" />  
+    <logger name="org.jboss.resteasy.mock" level="DEBUG" />  
 
 </configuration>
     

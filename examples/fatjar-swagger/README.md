@@ -10,6 +10,14 @@ System Requirements:
 Building the example project:
 -----------------------------
 
+To download and unpack Swagger UI:
+
+`mvn clean package`
+
+When you run `mvn clean package` on the project, it will first download the Swagger-UI into the 'target' folder. 
+Then, the 'dist' folder of the Swagger-UI project is copied into the /src/main/resources/swagger-ui folder of the project. 
+When compiled, the swagger-ui folder will then appear in target/classes, and be accessible to your compiled and running fat JAR.
+
 To build the fat JAR and run some tests:
 
 `mvn clean install`
@@ -20,7 +28,7 @@ To run:
 
 Hello World:
 
-`http://localhost:8080/hello/World`
+`http://localhost:8080/api/hello/World`
 
 Swagger:
 
@@ -32,7 +40,4 @@ You should see output like:
 
 Swagger UI:
 
-`mvn clean package`
-
-
-When you run mvn clean package on your project, this will first download the Swagger-UI into target folder. Then, the dist folder of the Swagger-UI project is copied into the /src/main/resources/webapp folder of your main project. When compiled, the webapp folder will then appear in target/classes, and be accessible to your compiled and running server JAR.
+`http://localhost:8080/index.html`

@@ -28,7 +28,6 @@ public class FatJarApplication extends Application {
         
         */
 	}
-    
 	
 	@Override
 	public Set<Object> getSingletons() {
