@@ -20,4 +20,4 @@ To run:
 
 Hello World:
 
-`http://localhost:8080/hello/World`
+`http://localhost:8080/api/hello/World`
