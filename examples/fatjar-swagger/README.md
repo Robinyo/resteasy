@@ -32,12 +32,8 @@ Hello World:
 
 Swagger:
 
-`http://localhost:8080/swagger.json`
-
-You should see output like:
-
-`{"swagger":"2.0","info":{"version":"1.0.2"},"host":"localhost:8080","basePath":"/","schemes":["http"]}`
+`http://localhost:8080/api/swagger.json`
 
 Swagger UI:
 
-`http://localhost:8080/index.html`
+`http://localhost:8080`

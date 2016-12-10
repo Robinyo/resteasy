@@ -6,39 +6,39 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
 
 public class Main {
-	
-	public Main() {}
-	
-    public static void main( String[] args ) throws Exception
-    {
-        try
-        {
+
+    static final String APPLICATION_PATH = "/api";
+    static final String API_PATH_SPEC = "/api/*";
+
+    public Main() {
+    }
+
+    public static void main(String[] args) throws Exception {
+        try {
             new Main().run();
-        }
-        catch (Throwable t)
-        {
+        } catch (Throwable t) {
             t.printStackTrace();
         }
     }
-    
-    public void run() throws Exception
-    {
-        int port = 8080;
-        Server server = new Server(port);
-        
-    	ServletHolder servletHolder = new ServletHolder(new HttpServletDispatcher());
-		servletHolder.setInitParameter("javax.ws.rs.Application",
-				                       "org.robferguson.resteasy.examples.fatjar.FatJarApplication");
 
-		ServletContextHandler context = new ServletContextHandler();
-		context.addServlet(servletHolder, "/");
+    public void run() throws Exception {
 
-		server.setHandler(context);
-		server.start();
-		server.join();
-    } 
+        final int port = 8080;
+        final Server server = new Server(port);
+
+        // setup Application context
+        ServletContextHandler context = new ServletContextHandler();
+
+        // setup JAX-RS (RESTEasy) resources
+        ServletHolder apiServlet = new ServletHolder(new HttpServletDispatcher());
+        apiServlet.setInitParameter("resteasy.servlet.mapping.prefix", APPLICATION_PATH);
+        apiServlet.setInitParameter("javax.ws.rs.Application",
+                "org.robferguson.resteasy.examples.fatjar.FatJarApplication");
+
+        context.addServlet(apiServlet, API_PATH_SPEC);
+
+        server.setHandler(context);
+        server.start();
+        server.join();
+    }
 }
-
-// * Jetty Docs: <a href="https://www.eclipse.org/jetty/documentation/9.3.x/embedding-jetty.html" target="_blank">Embedding Jetty</a>
-// * Jetty Project (GitHub): <a href="https://github.com/jetty-project/embedded-jetty-uber-jar" target="_blank">Example of an Uber JAR (Fat JAR) to start a server using Embedded Jetty</a>
-// * Jetty Project (GitHub): <a href="https://github.com/jetty-project/embedded-jetty-cookbook" target="_blank">Short examples of various features of Embedded Jetty</a>
