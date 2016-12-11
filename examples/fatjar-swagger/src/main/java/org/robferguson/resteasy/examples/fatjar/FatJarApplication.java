@@ -43,7 +43,7 @@ public class FatJarApplication extends Application {
         beanConfig.setBasePath("/api");
         beanConfig.setResourcePackage(MessageResource.class.getPackage().getName());
         beanConfig.setTitle("RESTEasy, Embedded Jetty, Fat JAR, Swagger and Swagger UI Example");
-        beanConfig.setDescription("Hello World API to demonstrate Swagger and Swagger UI with RESTEasy in an "
+        beanConfig.setDescription("Sample application to demonstrate Swagger and Swagger UI with RESTEasy in an "
                 + "embedded Jetty instance, packaged in a Fat JAR with no web.xml.");
         beanConfig.setScan(true);
     }

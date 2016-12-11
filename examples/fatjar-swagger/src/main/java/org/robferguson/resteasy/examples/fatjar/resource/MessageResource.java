@@ -20,7 +20,6 @@ public class MessageResource {
     @GET
     @Path("/{param}")
     @ApiOperation(value = "Returns param", notes = "Returns param", response = MessageResource.class)
-
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful retrieval of param value", response = MessageResource.class) })
     public Response printMessage(@PathParam("param") String msg) {
