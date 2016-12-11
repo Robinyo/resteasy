@@ -26,7 +26,7 @@
         <swagger.version>1.5.10</swagger.version>
         
         <slf4j.version>1.7.21</slf4j.version>
-        <logback.version>1.1.5</logback.version>
+        <logback.version>1.1.8</logback.version>
         
         <!-- Plugin versions -->
         <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
