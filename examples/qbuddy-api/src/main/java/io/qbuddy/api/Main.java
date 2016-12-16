@@ -1,27 +1,44 @@
 package io.qbuddy.api;
 
+import javax.annotation.concurrent.ThreadSafe;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
+import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.log.Slf4jLog;
 import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
 
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.google.inject.servlet.GuiceFilter;
+
+@ThreadSafe
 public class Main {
 
     static final String APPLICATION_PATH = "/api";
     static final String API_PATH_SPEC = "/api/*";
     static final String SWAGGER_UI_PATH_SPEC = "/*";
 
-    public Main() {
+    private final GuiceFilter filter;
+
+    @Inject
+    public Main(GuiceFilter filter) {
+        this.filter = filter;
     }
 
     public static void main(String[] args) throws Exception {
+
         try {
             Log.setLog(new Slf4jLog());
 
-            new Main().run();
+            final Injector injector = Guice.createInjector(new ApplicationModule());
+
+            injector.getInstance(Main.class).run();
+
         } catch (Throwable t) {
             t.printStackTrace();
         }
@@ -34,6 +51,10 @@ public class Main {
 
         // setup Application context
         final ServletContextHandler context = new ServletContextHandler();
+
+        // add the GuiceFilter
+        FilterHolder filterHolder = new FilterHolder(filter);
+        context.addFilter(filterHolder, "/*", null);
 
         // setup JAX-RS (RESTEasy) resources
         final ServletHolder apiServlet = new ServletHolder(new HttpServletDispatcher());
