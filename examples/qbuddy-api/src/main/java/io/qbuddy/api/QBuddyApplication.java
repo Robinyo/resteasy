@@ -21,7 +21,7 @@ public class QBuddyApplication extends Application {
 
         HashSet<Class<?>> set = new HashSet<Class<?>>();
 
-        set.add(MessageResource.class);
+        // set.add(MessageResource.class);
 
         set.add(io.swagger.jaxrs.listing.ApiListingResource.class);
         set.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);

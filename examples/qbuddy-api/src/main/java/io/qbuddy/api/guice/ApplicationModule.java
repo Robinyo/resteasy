@@ -1,4 +1,4 @@
-package io.qbuddy.api;
+package io.qbuddy.api.guice;
 
 import com.google.inject.AbstractModule;
 

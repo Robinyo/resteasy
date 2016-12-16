@@ -19,6 +19,9 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceFilter;
 
+import io.qbuddy.api.guice.ApplicationModule;
+import io.qbuddy.api.guice.RestEasyModule;
+
 @ThreadSafe
 public class Main {
 
