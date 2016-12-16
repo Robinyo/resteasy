@@ -1,4 +1,4 @@
-package org.robferguson.resteasy.examples.fatjar;
+package io.qbuddy.api;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
@@ -39,8 +39,7 @@ public class Main {
         final ServletHolder apiServlet = new ServletHolder(new HttpServletDispatcher());
         apiServlet.setInitOrder(1);
         apiServlet.setInitParameter("resteasy.servlet.mapping.prefix", APPLICATION_PATH);
-        apiServlet.setInitParameter("javax.ws.rs.Application",
-                "org.robferguson.resteasy.examples.fatjar.FatJarApplication");
+        apiServlet.setInitParameter("javax.ws.rs.Application", "io.qbuddy.api.QBuddyApplication");
         context.addServlet(apiServlet, API_PATH_SPEC);
 
         // setup static (Swagger UI) resources
