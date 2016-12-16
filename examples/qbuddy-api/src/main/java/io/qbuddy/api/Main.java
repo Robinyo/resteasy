@@ -57,7 +57,7 @@ public class Main {
 
         // add the GuiceFilter
         FilterHolder filterHolder = new FilterHolder(filter);
-        context.addFilter(filterHolder, "/*", EnumSet.allOf(DispatcherType.class));
+        context.addFilter(filterHolder, API_PATH_SPEC, EnumSet.allOf(DispatcherType.class));
 
         // setup the JAX-RS (RESTEasy) resources
         final ServletHolder apiServlet = new ServletHolder(new HttpServletDispatcher());
