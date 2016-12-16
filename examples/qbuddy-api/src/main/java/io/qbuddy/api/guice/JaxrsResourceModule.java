@@ -4,7 +4,7 @@ import com.google.inject.AbstractModule;
 
 import io.qbuddy.api.resource.MessageResource;
 
-public class ApplicationModule extends AbstractModule {
+public class JaxrsResourceModule extends AbstractModule {
 
     @Override
     protected void configure() {

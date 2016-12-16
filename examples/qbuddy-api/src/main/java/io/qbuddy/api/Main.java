@@ -19,7 +19,8 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceFilter;
 
-import io.qbuddy.api.guice.ApplicationModule;
+import io.qbuddy.api.guice.JaxrsResourceModule;
+import io.qbuddy.api.guice.JettyModule;
 import io.qbuddy.api.guice.RestEasyModule;
 
 @ThreadSafe
@@ -41,7 +42,8 @@ public class Main {
         try {
             Log.setLog(new Slf4jLog());
 
-            final Injector injector = Guice.createInjector(new RestEasyModule(), new ApplicationModule());
+            final Injector injector = Guice.createInjector(new RestEasyModule(), new JaxrsResourceModule(),
+                    new JettyModule());
 
             injector.getInstance(Main.class).run();
 

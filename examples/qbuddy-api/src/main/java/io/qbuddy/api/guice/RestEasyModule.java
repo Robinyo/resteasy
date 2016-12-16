@@ -10,5 +10,9 @@ public class RestEasyModule extends AbstractModule {
     protected void configure() {
 
         bind(GuiceResteasyBootstrapServletContextListener.class);
+
+        // bind(ObjectMapperContextResolver.class);
+
+        // bind(HttpServletDispatcher.class).in(Singleton.class);
     }
 }
