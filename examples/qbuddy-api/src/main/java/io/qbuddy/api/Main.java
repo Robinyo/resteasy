@@ -31,9 +31,7 @@ import io.qbuddy.api.swagger.SwaggerModule;
 public class Main {
 
     static final String APPLICATION_PATH = "/api";
-    static final String API_PATH_SPEC = "/api/*";
-    // static final String SWAGGER_UI_PATH_SPEC = "/*";
-    static final String SWAGGER_UI_PATH_SPEC = "/";
+    static final String CONTEXT_ROOT = "/";
 
     private final GuiceFilter filter;
     private final EventListenerScanner eventListenerScanner;
@@ -51,8 +49,8 @@ public class Main {
         try {
             Log.setLog(new Slf4jLog());
 
-            final Injector injector = Guice.createInjector(new RestEasyModule(APPLICATION_PATH), new ResourceModule(),
-                    new JettyModule(), new SwaggerModule());
+            final Injector injector = Guice.createInjector(new JettyModule(), new RestEasyModule(APPLICATION_PATH),
+                    new ResourceModule(), new SwaggerModule(APPLICATION_PATH));
 
             injector.getInstance(Main.class).run();
 
@@ -67,15 +65,15 @@ public class Main {
         final Server server = new Server(port);
 
         // setup the Application context
-        final ServletContextHandler context = new ServletContextHandler(server, SWAGGER_UI_PATH_SPEC);
+        final ServletContextHandler context = new ServletContextHandler(server, CONTEXT_ROOT);
 
         // add the GuiceFilter (all requests will be routed through the GuiceFilter)
         FilterHolder filterHolder = new FilterHolder(filter);
-        context.addFilter(filterHolder, API_PATH_SPEC, null);
+        context.addFilter(filterHolder, APPLICATION_PATH + "/*", null);
 
         // setup the DefaultServlet for embedded Jetty (and to serve our static resources)
         final ServletHolder defaultServlet = new ServletHolder(new DefaultServlet());
-        context.addServlet(defaultServlet, SWAGGER_UI_PATH_SPEC);
+        context.addServlet(defaultServlet, CONTEXT_ROOT);
 
         // set the path to our static (Swagger UI) resources
         String resourceBasePath = Main.class.getResource("/swagger-ui").toExternalForm();
@@ -113,5 +111,6 @@ public class Main {
     }
 }
 
+// http://stackoverflow.com/questions/10874188/jax-rs-application-on-the-root-context-how-can-it-be-done
 // https://github.com/gwizard/gwizard/tree/master/gwizard-web/src/main/java/org/gwizard/web
 // https://github.com/gwizard/gwizard/blob/master/gwizard-web/src/main/java/org/gwizard/web/WebServer.java

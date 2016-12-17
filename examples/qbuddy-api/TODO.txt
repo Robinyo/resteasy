@@ -16,6 +16,8 @@ https://github.com/swagger-api/swagger-core/issues/997
 look at -> https://github.com/swagger-api/swagger-core/tree/master/modules/swagger-jersey2-jaxrs
 
 https://gist.github.com/ben-manes/af6ab5e857f29f55d990
+https://github.com/gwizard/gwizard/tree/master/gwizard-web/src/main/java/org/gwizard/web
+
 // http://realjenius.com/2012/01/03/guice-multibindings/
 
 // https://gist.github.com/natros/370c0093fa60379c3901
@@ -27,10 +29,8 @@ https://gist.github.com/ben-manes/af6ab5e857f29f55d990
 
 
 Take a look at:
-- https://github.com/palominolabs/jetty-http-server-wrapper
-- https://github.com/palominolabs/config-inject
 
 // https://github.com/palominolabs/jetty-http-server-wrapper
 // https://github.com/palominolabs/jetty-http-server-wrapper/blob/master/src/main/java/com/palominolabs/http/server/HttpServerWrapper.java
-
-- https://github.com/brianm/config-magic/
+// https://github.com/palominolabs/config-inject
+// https://github.com/brianm/config-magic/
