@@ -1,10 +1,8 @@
-package io.qbuddy.api.guice;
+package io.qbuddy.api.resource;
 
 import com.google.inject.AbstractModule;
 
-import io.qbuddy.api.resource.MessageResource;
-
-public class JaxrsResourceModule extends AbstractModule {
+public class ResourceModule extends AbstractModule {
 
     @Override
     protected void configure() {

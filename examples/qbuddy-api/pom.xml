@@ -126,7 +126,7 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
+        
         <!-- Guice runtime dependencies -->
         <dependency>
             <groupId>com.google.inject</groupId>
@@ -138,7 +138,12 @@
             <artifactId>guice-servlet</artifactId>
             <version>${guice.version}</version>
         </dependency>
-    
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-multibindings</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

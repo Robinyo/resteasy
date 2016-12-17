@@ -37,10 +37,3 @@ Swagger:
 Swagger UI:
 
 `http://localhost:8080`
-
-
-
-// https://github.com/palominolabs/jetty-http-server-wrapper
-// https://github.com/palominolabs/jetty-http-server-wrapper/blob/master/src/main/java/com/palominolabs/http/server/HttpServerWrapper.java
-// https://bitbucket.org/marshallpierce/guice-jaxrs-examples/src/7df5be64aac90524fef6f9b2982a104a9e35ef43/resteasy/src/main/java/org/mpierce/guice/jaxrs/resteasy/ResteasyMain.java?at=master&fileviewer=file-view-default
-// https://gist.github.com/ben-manes/af6ab5e857f29f55d990 
