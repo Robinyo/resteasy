@@ -64,23 +64,24 @@ public class Main {
         final int port = 8080;
         final Server server = new Server(port);
 
-        // setup the Application context
+        // Setup the basic Application "context" at "/".
+        // This is also known as the handler tree (in Jetty speak).
         final ServletContextHandler context = new ServletContextHandler(server, CONTEXT_ROOT);
 
-        // add the GuiceFilter (all requests will be routed through the GuiceFilter)
+        // Add the GuiceFilter (all requests will be routed through GuiceFilter).
         FilterHolder filterHolder = new FilterHolder(filter);
         context.addFilter(filterHolder, APPLICATION_PATH + "/*", null);
 
-        // setup the DefaultServlet for embedded Jetty (and to serve our static resources)
+        // Setup the DefaultServlet at "/".
         final ServletHolder defaultServlet = new ServletHolder(new DefaultServlet());
         context.addServlet(defaultServlet, CONTEXT_ROOT);
 
-        // set the path to our static (Swagger UI) resources
+        // Set the path to our static (Swagger UI) resources
         String resourceBasePath = Main.class.getResource("/swagger-ui").toExternalForm();
         context.setResourceBase(resourceBasePath);
         context.setWelcomeFiles(new String[] { "index.html" });
 
-        // This will add any registered ServletContextListeners or other misc servlet listeners
+        // Add any registered ServletContextListeners or other misc servlet listeners
         // that have been bound. For example, the GuiceResteasyBootstrapServletContextListener
         // which gets bound by the RestEasyModule.
         eventListenerScanner.accept(new Visitor<EventListener>() {
@@ -93,10 +94,10 @@ public class Main {
 
         final HandlerCollection handlers = new HandlerCollection();
 
-        // the Application context is currently the server handler, add it to the list
+        // The Application context is currently the server handler, add it to the list.
         handlers.addHandler(server.getHandler());
 
-        // This will add any registered Jetty Handlers that have been bound
+        // Add any registered Jetty Handlers that have been bound.
         handlerScanner.accept(new Visitor<Handler>() {
 
             @Override

@@ -11,8 +11,7 @@ import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
 public class Main {
 
     static final String APPLICATION_PATH = "/api";
-    static final String API_PATH_SPEC = "/api/*";
-    static final String SWAGGER_UI_PATH_SPEC = "/*";
+    static final String CONTEXT_ROOT = "/";
 
     public Main() {
     }
@@ -32,27 +31,26 @@ public class Main {
         final int port = 8080;
         final Server server = new Server(port);
 
-        // setup Application context
-        final ServletContextHandler context = new ServletContextHandler();
+        // Setup the basic Application "context" at "/".
+        // This is also known as the handler tree (in Jetty speak).
+        final ServletContextHandler context = new ServletContextHandler(server, CONTEXT_ROOT);
 
-        // setup JAX-RS (RESTEasy) resources
+        // Setup RESTEasy's HttpServletDispatcher at "/api/*".
         final ServletHolder apiServlet = new ServletHolder(new HttpServletDispatcher());
-        apiServlet.setInitOrder(1);
         apiServlet.setInitParameter("resteasy.servlet.mapping.prefix", APPLICATION_PATH);
         apiServlet.setInitParameter("javax.ws.rs.Application",
                 "org.robferguson.resteasy.examples.fatjar.FatJarApplication");
-        context.addServlet(apiServlet, API_PATH_SPEC);
+        context.addServlet(apiServlet, APPLICATION_PATH + "/*");
 
-        // setup static (Swagger UI) resources
+        // Setup the DefaultServlet at "/".
+        final ServletHolder swaggerUiServlet = new ServletHolder(new DefaultServlet());
+        context.addServlet(swaggerUiServlet, CONTEXT_ROOT);
+
+        // Set the path to our static (Swagger UI) resources
         String resourceBasePath = Main.class.getResource("/swagger-ui").toExternalForm();
         context.setResourceBase(resourceBasePath);
         context.setWelcomeFiles(new String[] { "index.html" });
 
-        final ServletHolder swaggerUiServlet = new ServletHolder(new DefaultServlet());
-        swaggerUiServlet.setInitOrder(2);
-        context.addServlet(swaggerUiServlet, SWAGGER_UI_PATH_SPEC);
-
-        server.setHandler(context);
         server.start();
         server.join();
     }
