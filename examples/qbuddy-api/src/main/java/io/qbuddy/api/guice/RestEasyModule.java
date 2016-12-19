@@ -31,9 +31,8 @@ public class RestEasyModule extends ServletModule {
 
         // We must do dependency injection before the first request is processed.
         // That's why JEE defines the ServletContextListener interface.
-        // The REATEasy framework includes a ServletContextListener implementation
+        // The RESTEasy framework includes a ServletContextListener implementation
         // (i.e., GuiceResteasyBootstrapServletContextListener).
-
         bind(GuiceResteasyBootstrapServletContextListener.class);
 
         // bind(ObjectMapperContextResolver.class);
