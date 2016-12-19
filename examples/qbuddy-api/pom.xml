@@ -25,7 +25,9 @@
         <jetty.version>9.3.14.v20161028</jetty.version>
         <swagger.version>1.5.10</swagger.version>
         <guice.version>4.1.0</guice.version>
-        
+        <moneta.version>1.1</moneta.version>
+        <lombok.version>1.16.12</lombok.version>
+                
         <slf4j.version>1.7.21</slf4j.version>
         <logback.version>1.1.8</logback.version>
         
@@ -118,14 +120,6 @@
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
         </dependency>
-
-        <!-- Test scope dependencies -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
         
         <!-- Guice runtime dependencies -->
         <dependency>
@@ -142,6 +136,28 @@
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-multibindings</artifactId>
             <version>${guice.version}</version>
+        </dependency>
+        
+        <!-- Java Money and Currency API (JSR 354) dependencies -->
+        <dependency>
+            <groupId>org.javamoney</groupId>
+            <artifactId>moneta</artifactId>
+            <version>${moneta.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Test scope dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

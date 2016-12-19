@@ -27,6 +27,15 @@ https://github.com/gwizard/gwizard/tree/master/gwizard-web/src/main/java/org/gwi
 
 // http://www.aberger.at/en/blog/design/2016/11/16/dependency-injection-guice.html
 
+- lombok
+
+https://gualtierotesta.wordpress.com/2014/03/03/tutorial-using-lombok-to-reduce-boilerplate-code-in-java/
+
+- Money
+
+http://www.mscharhag.com/java/java-jsr-354-money-and-currency-api
+http://www.mscharhag.com/java/java-8-date-time-api
+
 
 Take a look at:
 
