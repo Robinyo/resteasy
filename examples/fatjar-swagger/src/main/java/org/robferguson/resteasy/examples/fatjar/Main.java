@@ -36,15 +36,15 @@ public class Main {
         final ServletContextHandler context = new ServletContextHandler(server, CONTEXT_ROOT);
 
         // Setup RESTEasy's HttpServletDispatcher at "/api/*".
-        final ServletHolder apiServlet = new ServletHolder(new HttpServletDispatcher());
-        apiServlet.setInitParameter("resteasy.servlet.mapping.prefix", APPLICATION_PATH);
-        apiServlet.setInitParameter("javax.ws.rs.Application",
+        final ServletHolder restEasyServlet = new ServletHolder(new HttpServletDispatcher());
+        restEasyServlet.setInitParameter("resteasy.servlet.mapping.prefix", APPLICATION_PATH);
+        restEasyServlet.setInitParameter("javax.ws.rs.Application",
                 "org.robferguson.resteasy.examples.fatjar.FatJarApplication");
-        context.addServlet(apiServlet, APPLICATION_PATH + "/*");
+        context.addServlet(restEasyServlet, APPLICATION_PATH + "/*");
 
         // Setup the DefaultServlet at "/".
-        final ServletHolder swaggerUiServlet = new ServletHolder(new DefaultServlet());
-        context.addServlet(swaggerUiServlet, CONTEXT_ROOT);
+        final ServletHolder defaultServlet = new ServletHolder(new DefaultServlet());
+        context.addServlet(defaultServlet, CONTEXT_ROOT);
 
         // Set the path to our static (Swagger UI) resources
         String resourceBasePath = Main.class.getResource("/swagger-ui").toExternalForm();

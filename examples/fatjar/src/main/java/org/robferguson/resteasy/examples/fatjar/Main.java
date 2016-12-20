@@ -1,6 +1,7 @@
 package org.robferguson.resteasy.examples.fatjar;
 
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
@@ -8,7 +9,7 @@ import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
 public class Main {
 
     static final String APPLICATION_PATH = "/api";
-    static final String API_PATH_SPEC = "/api/*";
+    static final String CONTEXT_ROOT = "/";
 
     public Main() {
     }
@@ -26,18 +27,21 @@ public class Main {
         final int port = 8080;
         final Server server = new Server(port);
 
-        // setup Application context
-        ServletContextHandler context = new ServletContextHandler();
+        // Setup the basic Application "context" at "/".
+        // This is also known as the handler tree (in Jetty speak).
+        final ServletContextHandler context = new ServletContextHandler(server, CONTEXT_ROOT);
 
-        // setup JAX-RS (RESTEasy) resources
-        ServletHolder apiServlet = new ServletHolder(new HttpServletDispatcher());
-        apiServlet.setInitParameter("resteasy.servlet.mapping.prefix", APPLICATION_PATH);
-        apiServlet.setInitParameter("javax.ws.rs.Application",
+        // Setup RESTEasy's HttpServletDispatcher at "/api/*".
+        final ServletHolder restEasyServlet = new ServletHolder(new HttpServletDispatcher());
+        restEasyServlet.setInitParameter("resteasy.servlet.mapping.prefix", APPLICATION_PATH);
+        restEasyServlet.setInitParameter("javax.ws.rs.Application",
                 "org.robferguson.resteasy.examples.fatjar.FatJarApplication");
+        context.addServlet(restEasyServlet, APPLICATION_PATH + "/*");
 
-        context.addServlet(apiServlet, API_PATH_SPEC);
+        // Setup the DefaultServlet at "/".
+        final ServletHolder defaultServlet = new ServletHolder(new DefaultServlet());
+        context.addServlet(defaultServlet, CONTEXT_ROOT);
 
-        server.setHandler(context);
         server.start();
         server.join();
     }
