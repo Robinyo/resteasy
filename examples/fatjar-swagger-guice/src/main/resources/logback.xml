@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+      <!-- encoders are assigned the type
+           ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+      <encoder>
+        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+      </encoder>
+    </appender>
+
+    <logger name="org.eclipse.jetty" level="INFO" />
+  
+    <!-- 
+    
+    WARN: For events serious enough to inform and log, but not fatal.
+    INFO: Informational events.
+    DEBUG: Debugging events (very noisy).
+    IGNORE: Exception events that you can safely ignore, but useful for some people.
+            You might see this level as DEBUG under some Java logging framework configurations,
+            where it retains the ignore phrase somewhere in the logging.
+            
+    Note: Jetty logging produces no FATAL or SEVERE events.
+    
+    -->
+
+    <!-- Logs all activity by the core RESTEasy implementation -->
+    <logger name="org.jboss.resteasy.core" level="DEBUG" />
+    
+    <!-- Logs all activity by RESTEasy entity providers -->
+    <logger name="org.jboss.resteasy.plugins.providers" level="DEBUG" />
+     
+    <!-- Logs all activity by the RESTEasy server implementation -->
+    <logger name="org.jboss.resteasy.plugins.server" level="DEBUG" />   
+         
+    <!-- Logs all activity by JAX-RS implementing classes -->
+    <logger name="org.jboss.resteasy.specimpl" level="DEBUG" />   
+    
+    <!-- Logs all activity by the RESTEasy mock framework -->
+    <logger name="org.jboss.resteasy.mock" level="DEBUG" />  
+    
+    
+    <logger name="io.swagger" level="INFO"/>
+    
+    
+    <root level="INFO">
+      <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>
+    
