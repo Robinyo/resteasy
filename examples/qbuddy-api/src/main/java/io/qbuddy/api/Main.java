@@ -1,10 +1,7 @@
 package io.qbuddy.api;
 
-import java.util.EventListener;
-
 import javax.annotation.concurrent.ThreadSafe;
 
-import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.servlet.DefaultServlet;
@@ -21,7 +18,6 @@ import com.google.inject.servlet.GuiceFilter;
 
 import io.qbuddy.api.guice.EventListenerScanner;
 import io.qbuddy.api.guice.HandlerScanner;
-import io.qbuddy.api.guice.Scanner.Visitor;
 import io.qbuddy.api.jetty.JettyModule;
 import io.qbuddy.api.resource.ResourceModule;
 import io.qbuddy.api.resteasy.RestEasyModule;
@@ -81,15 +77,21 @@ public class Main {
         context.setResourceBase(resourceBasePath);
         context.setWelcomeFiles(new String[] { "index.html" });
 
-        // Add any registered ServletContextListeners or other misc servlet listeners
-        // that have been bound. For example, the GuiceResteasyBootstrapServletContextListener
-        // which gets bound by the RestEasyModule.
-        eventListenerScanner.accept(new Visitor<EventListener>() {
+        // Add any Listeners that have been bound, for example, the
+        // GuiceResteasyBootstrapServletContextListener which gets bound in the RestEasyModule.
 
+        /*
+        eventListenerScanner.accept(new Visitor<EventListener>() {
+        
             @Override
             public void visit(EventListener listener) {
                 context.addEventListener(listener);
             }
+        });
+        */
+
+        eventListenerScanner.accept((listener) -> {
+            context.addEventListener(listener);
         });
 
         final HandlerCollection handlers = new HandlerCollection();
@@ -97,13 +99,20 @@ public class Main {
         // The Application context is currently the server handler, add it to the list.
         handlers.addHandler(server.getHandler());
 
-        // Add any registered Jetty Handlers that have been bound.
-        handlerScanner.accept(new Visitor<Handler>() {
+        // Add any Handlers that have been bound
 
+        /*
+        handlerScanner.accept(new Visitor<Handler>() {
+        
             @Override
             public void visit(Handler handler) {
                 handlers.addHandler(handler);
             }
+        });
+        */
+
+        handlerScanner.accept((handler) -> {
+            handlers.addHandler(handler);
         });
 
         server.setHandler(handlers);
