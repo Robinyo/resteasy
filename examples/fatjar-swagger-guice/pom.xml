@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
         
-    <name>fatjar-swagger</name>
+    <name>fatjar-swagger-guice</name>
 	<description>Getting started with RESTEasy - Fat Jar Example</description>
 	<url>https://github.com/Robinyo</url>
     
@@ -24,6 +24,7 @@
         <servlet-api.version>3.1.0</servlet-api.version>
         <jetty.version>9.3.14.v20161028</jetty.version>
         <swagger.version>1.5.10</swagger.version>
+        <guice.version>4.1.0</guice.version>
         
         <slf4j.version>1.7.21</slf4j.version>
         <logback.version>1.1.8</logback.version>
@@ -73,6 +74,17 @@
             <artifactId>resteasy-servlet-initializer</artifactId>
             <version>${resteasy.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-guice</artifactId>
+            <version>${resteasy.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         
         <!-- Jetty runtime dependencies -->
         <dependency>
@@ -105,6 +117,23 @@
             <version>${logback.version}</version>
         </dependency>
 
+        <!-- Guice runtime dependencies -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-multibindings</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+
         <!-- Test scope dependencies -->
         <dependency>
             <groupId>junit</groupId>
@@ -117,7 +146,7 @@
     
     <build>
       <!-- <pluginManagement> -->
-        <finalName>fatjar-swagger-${project.version}</finalName>
+        <finalName>fatjar-swagger-guice-${project.version}</finalName>
         <plugins>
         
             <plugin>

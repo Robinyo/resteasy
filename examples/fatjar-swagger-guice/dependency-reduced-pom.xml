@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.robferguson.resteasy.examples.fatjar</groupId>
   <artifactId>fatjar-swagger</artifactId>
-  <name>fatjar-swagger</name>
+  <name>fatjar-swagger-guice</name>
   <version>1.0-SNAPSHOT</version>
   <description>Getting started with RESTEasy - Fat Jar Example</description>
   <url>https://github.com/Robinyo</url>
@@ -25,7 +25,7 @@
     <url>scm:git:https://github.com/Robinyo/resteasy</url>
   </scm>
   <build>
-    <finalName>fatjar-swagger-${project.version}</finalName>
+    <finalName>fatjar-swagger-guice-${project.version}</finalName>
     <plugins>
       <plugin>
         <groupId>com.googlecode.maven-download-plugin</groupId>
@@ -145,23 +145,24 @@
     </dependency>
   </dependencies>
   <properties>
-    <swagger.version>1.5.10</swagger.version>
-    <slf4j.version>1.7.21</slf4j.version>
-    <junit.version>4.11</junit.version>
-    <jetty.version>9.3.14.v20161028</jetty.version>
-    <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
-    <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
-    <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
-    <source.version>1.8</source.version>
     <target.version>1.8</target.version>
+    <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
+    <resteasy.version>3.0.19.Final</resteasy.version>
+    <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+    <guice.version>4.1.0</guice.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.version>4.11</junit.version>
+    <swagger.version>1.5.10</swagger.version>
+    <logback.version>1.1.8</logback.version>
+    <slf4j.version>1.7.21</slf4j.version>
+    <source.version>1.8</source.version>
+    <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
     <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
-    <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <jetty.version>9.3.14.v20161028</jetty.version>
+    <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
     <servlet-api.version>3.1.0</servlet-api.version>
     <download-maven-plugin.version>1.3.0</download-maven-plugin.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <logback.version>1.1.8</logback.version>
-    <resteasy.version>3.0.19.Final</resteasy.version>
   </properties>
 </project>
 

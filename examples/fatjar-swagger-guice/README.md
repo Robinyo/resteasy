@@ -24,7 +24,7 @@ To build the fat JAR and run some tests:
 
 To run:
 
-`java -jar target/fatjar-swagger-1.0-SNAPSHOT.jar`
+`java -jar target/fatjar-swagger-guice-1.0-SNAPSHOT.jar`
 
 Hello World:
 
