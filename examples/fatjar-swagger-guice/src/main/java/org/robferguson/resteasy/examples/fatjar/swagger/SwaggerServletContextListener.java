@@ -30,9 +30,9 @@ final class SwaggerServletContextListener implements ServletContextListener {
         beanConfig.setHost("localhost:8080");
         beanConfig.setBasePath("/api");
 
-        beanConfig.setTitle("QBuddy RESTful API");
-        beanConfig.setDescription("QBuddy RESTful API built using RESTEasy, Swagger and Swagger UI "
-                + "packaged in a Fat JAR with an embedded Jetty instance and no web.xml.");
+        beanConfig.setTitle("RESTEasy, Embedded Jetty, Swagger and Guice Example");
+        beanConfig.setDescription("Sample RESTful API built using RESTEasy, Swagger, Swagger UI and "
+                + "Guice packaged in a Fat JAR with an embedded Jetty instance and no web.xml.");
 
         // setScan() must be called last
         beanConfig.setResourcePackage(MessageResource.class.getPackage().getName());
