@@ -79,17 +79,6 @@ public class Main {
 
         // Add any Listeners that have been bound, for example, the
         // GuiceResteasyBootstrapServletContextListener which gets bound in the RestEasyModule.
-
-        /*
-        eventListenerScanner.accept(new Visitor<EventListener>() {
-        
-            @Override
-            public void visit(EventListener listener) {
-                context.addEventListener(listener);
-            }
-        });
-        */
-
         eventListenerScanner.accept((listener) -> {
             context.addEventListener(listener);
         });
@@ -100,17 +89,6 @@ public class Main {
         handlers.addHandler(server.getHandler());
 
         // Add any Handlers that have been bound
-
-        /*
-        handlerScanner.accept(new Visitor<Handler>() {
-        
-            @Override
-            public void visit(Handler handler) {
-                handlers.addHandler(handler);
-            }
-        });
-        */
-
         handlerScanner.accept((handler) -> {
             handlers.addHandler(handler);
         });
@@ -120,6 +98,26 @@ public class Main {
         server.join();
     }
 }
+
+/*
+eventListenerScanner.accept(new Visitor<EventListener>() {
+
+    @Override
+    public void visit(EventListener listener) {
+        context.addEventListener(listener);
+    }
+});
+*/
+
+/*
+handlerScanner.accept(new Visitor<Handler>() {
+
+    @Override
+    public void visit(Handler handler) {
+        handlers.addHandler(handler);
+    }
+});
+*/
 
 // http://stackoverflow.com/questions/10874188/jax-rs-application-on-the-root-context-how-can-it-be-done
 // https://github.com/gwizard/gwizard/tree/master/gwizard-web/src/main/java/org/gwizard/web
