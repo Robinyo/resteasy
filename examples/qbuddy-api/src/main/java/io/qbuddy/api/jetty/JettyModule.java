@@ -1,4 +1,4 @@
-package io.qbuddy.api.guice;
+package io.qbuddy.api.jetty;
 
 import com.google.inject.servlet.GuiceFilter;
 import com.google.inject.servlet.ServletModule;

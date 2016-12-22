@@ -21,10 +21,10 @@ import com.google.inject.servlet.GuiceFilter;
 
 import io.qbuddy.api.guice.EventListenerScanner;
 import io.qbuddy.api.guice.HandlerScanner;
-import io.qbuddy.api.guice.JettyModule;
-import io.qbuddy.api.guice.RestEasyModule;
 import io.qbuddy.api.guice.Scanner.Visitor;
+import io.qbuddy.api.jetty.JettyModule;
 import io.qbuddy.api.resource.ResourceModule;
+import io.qbuddy.api.resteasy.RestEasyModule;
 import io.qbuddy.api.swagger.SwaggerModule;
 
 @ThreadSafe

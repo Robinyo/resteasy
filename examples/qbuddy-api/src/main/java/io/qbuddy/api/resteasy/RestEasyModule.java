@@ -1,4 +1,4 @@
-package io.qbuddy.api.guice;
+package io.qbuddy.api.resteasy;
 
 import java.util.Map;
 
