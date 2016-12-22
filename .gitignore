@@ -1,14 +1,15 @@
 target
+dependency-reduced-pom.xml
 
 # Intellij
-###################
+##########
 *.iml
 *.ipr
 *.iws
 .idea
 
 # Eclipse
-###################
+#########
 **/.settings
 **/.project
 **/.classpath
