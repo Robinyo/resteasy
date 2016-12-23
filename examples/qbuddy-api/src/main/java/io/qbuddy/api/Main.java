@@ -9,13 +9,15 @@ import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import org.eclipse.jetty.util.log.Log;
-import org.eclipse.jetty.util.log.Slf4jLog;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceFilter;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.core.util.StatusPrinter;
 import io.qbuddy.api.guice.EventListenerScanner;
 import io.qbuddy.api.guice.HandlerScanner;
 import io.qbuddy.api.jetty.JettyModule;
@@ -33,6 +35,8 @@ public class Main {
     private final EventListenerScanner eventListenerScanner;
     private final HandlerScanner handlerScanner;
 
+    static final Logger log = LoggerFactory.getLogger(Main.class);
+
     // Guice can work with both javax and guice annotations.
     @Inject
     public Main(GuiceFilter filter, EventListenerScanner eventListenerScanner, HandlerScanner handlerScanner) {
@@ -44,7 +48,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         try {
-            Log.setLog(new Slf4jLog());
+            log.info("main()");
 
             final Injector injector = Guice.createInjector(new JettyModule(), new RestEasyModule(APPLICATION_PATH),
                     new ResourceModule(), new SwaggerModule(APPLICATION_PATH));
@@ -60,6 +64,8 @@ public class Main {
 
         final int port = 8080;
         final Server server = new Server(port);
+
+        log.info("run()");
 
         // Setup the basic Application "context" at "/".
         // This is also known as the handler tree (in Jetty speak).
@@ -98,6 +104,13 @@ public class Main {
         server.start();
         server.join();
     }
+
+    private void logbackStatus() {
+
+        LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+        StatusPrinter.print(lc);
+    }
+
 }
 
 /*
@@ -120,6 +133,9 @@ handlerScanner.accept(new Visitor<Handler>() {
 });
 */
 
+// Log.setLog(new Slf4jLog());
+
+// http://logback.qos.ch/manual/configuration.html
 // http://stackoverflow.com/questions/10874188/jax-rs-application-on-the-root-context-how-can-it-be-done
 // https://github.com/gwizard/gwizard/tree/master/gwizard-web/src/main/java/org/gwizard/web
 // https://github.com/gwizard/gwizard/blob/master/gwizard-web/src/main/java/org/gwizard/web/WebServer.java

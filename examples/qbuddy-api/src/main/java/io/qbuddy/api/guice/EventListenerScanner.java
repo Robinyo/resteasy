@@ -2,7 +2,8 @@ package io.qbuddy.api.guice;
 
 import java.util.EventListener;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
+
 import com.google.inject.Injector;
 
 /**

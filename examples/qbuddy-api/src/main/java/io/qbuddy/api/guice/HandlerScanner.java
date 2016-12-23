@@ -1,8 +1,9 @@
 package io.qbuddy.api.guice;
 
+import javax.inject.Inject;
+
 import org.eclipse.jetty.server.Handler;
 
-import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 /**

@@ -128,6 +128,12 @@
   </build>
   <dependencies>
     <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.16.12</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
@@ -141,6 +147,7 @@
     </dependency>
   </dependencies>
   <properties>
+    <lombok.version>1.16.12</lombok.version>
     <target.version>1.8</target.version>
     <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
     <resteasy.version>3.0.19.Final</resteasy.version>
@@ -148,6 +155,7 @@
     <guice.version>4.1.0</guice.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>4.11</junit.version>
+    <moneta.version>1.1</moneta.version>
     <swagger.version>1.5.10</swagger.version>
     <logback.version>1.1.8</logback.version>
     <slf4j.version>1.7.21</slf4j.version>

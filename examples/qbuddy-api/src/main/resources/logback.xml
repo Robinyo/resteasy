@@ -49,17 +49,19 @@
     
     <logger name="org.eclipse.jetty" level="INFO" />
     
-    <logger name="io.swagger" level="INFO"/>
+    <logger name="io.swagger" level="INFO" />
     
-    <logger name="com.google.inject" level="INFO"/>
+    <logger name="com.google.inject" level="INFO" />
     
-    <logger name="org.reflections.Reflections" level="INFO"/>
+    <logger name="org.reflections.Reflections" level="INFO" />
     
     
+    
+    <logger name="io.qbuddy" level="INFO" />
+     
     
 
-    <root>
-      <level>INFO</level>
+    <root level="INFO">
       <appender-ref ref="STDOUT" />
     </root>
 
