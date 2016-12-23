@@ -1,6 +1,7 @@
 package io.qbuddy.api;
 
 import javax.annotation.concurrent.ThreadSafe;
+import javax.inject.Inject;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerCollection;
@@ -12,7 +13,6 @@ import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.log.Slf4jLog;
 
 import com.google.inject.Guice;
-import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceFilter;
 
@@ -33,6 +33,7 @@ public class Main {
     private final EventListenerScanner eventListenerScanner;
     private final HandlerScanner handlerScanner;
 
+    // Guice can work with both javax and guice annotations.
     @Inject
     public Main(GuiceFilter filter, EventListenerScanner eventListenerScanner, HandlerScanner handlerScanner) {
         this.filter = filter;

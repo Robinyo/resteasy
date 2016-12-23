@@ -1,6 +1,7 @@
 package org.robferguson.resteasy.examples.fatjar;
 
 import javax.annotation.concurrent.ThreadSafe;
+import javax.inject.Inject;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerCollection;
@@ -18,7 +19,6 @@ import org.robferguson.resteasy.examples.fatjar.resteasy.RestEasyModule;
 import org.robferguson.resteasy.examples.fatjar.swagger.SwaggerModule;
 
 import com.google.inject.Guice;
-import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceFilter;
 
@@ -32,6 +32,7 @@ public class Main {
     private final EventListenerScanner eventListenerScanner;
     private final HandlerScanner handlerScanner;
 
+    // Guice can work with both javax and guice annotations.
     @Inject
     public Main(GuiceFilter filter, EventListenerScanner eventListenerScanner, HandlerScanner handlerScanner) {
         this.filter = filter;
