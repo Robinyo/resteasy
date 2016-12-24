@@ -21,6 +21,7 @@ import ch.qos.logback.core.util.StatusPrinter;
 import io.qbuddy.api.guice.EventListenerScanner;
 import io.qbuddy.api.guice.HandlerScanner;
 import io.qbuddy.api.jetty.JettyModule;
+import io.qbuddy.api.logging.LoggingModule;
 import io.qbuddy.api.resource.ResourceModule;
 import io.qbuddy.api.resteasy.RestEasyModule;
 import io.qbuddy.api.swagger.SwaggerModule;
@@ -35,7 +36,7 @@ public class Main {
     private final EventListenerScanner eventListenerScanner;
     private final HandlerScanner handlerScanner;
 
-    static final Logger log = LoggerFactory.getLogger(Main.class);
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     // Guice can work with both javax and guice annotations.
     @Inject
@@ -48,10 +49,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         try {
-            log.info("main()");
 
-            final Injector injector = Guice.createInjector(new JettyModule(), new RestEasyModule(APPLICATION_PATH),
-                    new ResourceModule(), new SwaggerModule(APPLICATION_PATH));
+            final Injector injector = Guice.createInjector(new LoggingModule(), new JettyModule(),
+                    new RestEasyModule(APPLICATION_PATH), new ResourceModule(), new SwaggerModule(APPLICATION_PATH));
 
             injector.getInstance(Main.class).run();
 
@@ -64,6 +64,8 @@ public class Main {
 
         final int port = 8080;
         final Server server = new Server(port);
+
+        printLogLevel();
 
         log.info("run()");
 
@@ -105,12 +107,30 @@ public class Main {
         server.join();
     }
 
-    private void logbackStatus() {
+    private void printLogLevel() {
+
+        if (log.isTraceEnabled()) {
+            log.trace("TRACE level logging is enabled.");
+        }
+        if (log.isDebugEnabled()) {
+            log.debug("DEBUG level logging is enabled.");
+        }
+        if (log.isInfoEnabled()) {
+            log.info("INFO level logging is enabled.");
+        }
+        if (log.isWarnEnabled()) {
+            log.warn("WARN level logging is enabled.");
+        }
+        if (log.isErrorEnabled()) {
+            log.error("ERROR level logging is enabled.");
+        }
+    }
+
+    private void printLoggingStatus() {
 
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
         StatusPrinter.print(lc);
     }
-
 }
 
 /*
