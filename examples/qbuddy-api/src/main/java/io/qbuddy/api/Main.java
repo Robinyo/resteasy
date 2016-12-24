@@ -31,6 +31,7 @@ public class Main {
 
     static final String APPLICATION_PATH = "/api";
     static final String CONTEXT_ROOT = "/";
+    static final String DEFAULT_PORT = "8080";
 
     private final GuiceFilter filter;
     private final EventListenerScanner eventListenerScanner;
@@ -62,8 +63,14 @@ public class Main {
 
     public void run() throws Exception {
 
-        final int port = 8080;
-        final Server server = new Server(port);
+        String port = System.getenv("PORT");
+
+        if (port == null || port.isEmpty()) {
+            log.info("PORT=" + DEFAULT_PORT);
+            port = DEFAULT_PORT;
+        }
+
+        final Server server = new Server(Integer.valueOf(port));
 
         printLogLevel();
 

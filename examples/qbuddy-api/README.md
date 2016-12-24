@@ -24,6 +24,10 @@ To build the fat JAR and run some tests:
 
 To run:
 
+`./run.sh`
+
+or
+
 `java -jar target/qbuddy-api-1.0-SNAPSHOT.jar`
 
 Hello World:
