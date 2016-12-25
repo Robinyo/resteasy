@@ -66,8 +66,8 @@ public class Main {
         String port = System.getenv("PORT");
 
         if (port == null || port.isEmpty()) {
-            log.info("PORT=" + DEFAULT_PORT);
             port = DEFAULT_PORT;
+            log.info("PORT=" + DEFAULT_PORT);
         }
 
         final Server server = new Server(Integer.valueOf(port));

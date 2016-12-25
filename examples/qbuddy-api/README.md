@@ -4,7 +4,7 @@ The QBuddy RESTful API ...
 
 System Requirements:
 --------------------
-- Java JDK 1.8
+- OpenJDK for Java 1.8
 - Maven 3.3.9 or higher
 
 Building the example project:
