@@ -32,3 +32,34 @@ public class LoggingModule extends AbstractModule {
         root.getLoggerContext().addListener(propagator);
     }
 }
+
+/*
+
+Log.setLog(new Slf4jLog());
+
+private void printLogLevel() {
+
+    if (log.isTraceEnabled()) {
+        log.trace("TRACE level logging is enabled.");
+    }
+    if (log.isDebugEnabled()) {
+        log.debug("DEBUG level logging is enabled.");
+    }
+    if (log.isInfoEnabled()) {
+        log.info("INFO level logging is enabled.");
+    }
+    if (log.isWarnEnabled()) {
+        log.warn("WARN level logging is enabled.");
+    }
+    if (log.isErrorEnabled()) {
+        log.error("ERROR level logging is enabled.");
+    }
+}
+
+private void printLoggingStatus() {
+
+    LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+    StatusPrinter.print(lc);
+}
+
+*/

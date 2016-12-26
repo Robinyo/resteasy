@@ -2,7 +2,9 @@ package io.qbuddy.api.server;
 
 public abstract class AbstractEmbeddedServer implements EmbeddedServer {
 
-    protected int port;
+    static final int DEFAULT_PORT = 9001;
+
+    protected int port = DEFAULT_PORT;
 
     @Override
     public EmbeddedServer setPort(int port) {

@@ -20,6 +20,7 @@ import io.qbuddy.api.swagger.SwaggerModule;
 @ThreadSafe
 public class Main {
 
+    static final String DEFAULT_PORT = "8080";
     static final String APPLICATION_PATH = "/api";
     static final String CONTEXT_ROOT = "/";
 
@@ -33,6 +34,16 @@ public class Main {
             final JettyServer server = injector.getInstance(JettyServer.class);
 
             log.info("main()");
+
+            String port = System.getenv("PORT");
+
+            if (port == null || port.isEmpty()) {
+                port = DEFAULT_PORT;
+            }
+
+            log.info("Port: " + port);
+
+            server.setPort(Integer.valueOf(port));
 
             // Add the GuiceFilter (all requests will be routed through GuiceFilter).
             server.addFilter(new GuiceFilter(), APPLICATION_PATH + "/*");
@@ -52,60 +63,4 @@ public class Main {
         return Guice.createInjector(new LoggingModule(), new JettyModule(), new RestEasyModule(APPLICATION_PATH),
                 new ResourceModule(), new SwaggerModule(APPLICATION_PATH));
     }
-
-    /*
-    
-    private void printLogLevel() {
-    
-        if (log.isTraceEnabled()) {
-            log.trace("TRACE level logging is enabled.");
-        }
-        if (log.isDebugEnabled()) {
-            log.debug("DEBUG level logging is enabled.");
-        }
-        if (log.isInfoEnabled()) {
-            log.info("INFO level logging is enabled.");
-        }
-        if (log.isWarnEnabled()) {
-            log.warn("WARN level logging is enabled.");
-        }
-        if (log.isErrorEnabled()) {
-            log.error("ERROR level logging is enabled.");
-        }
-    }
-    
-    private void printLoggingStatus() {
-    
-        LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-        StatusPrinter.print(lc);
-    }
-    
-    */
 }
-
-/*
-eventListenerScanner.accept(new Visitor<EventListener>() {
-
-    @Override
-    public void visit(EventListener listener) {
-        context.addEventListener(listener);
-    }
-});
-*/
-
-/*
-handlerScanner.accept(new Visitor<Handler>() {
-
-    @Override
-    public void visit(Handler handler) {
-        handlers.addHandler(handler);
-    }
-});
-*/
-
-// Log.setLog(new Slf4jLog());
-
-// http://logback.qos.ch/manual/configuration.html
-// http://stackoverflow.com/questions/10874188/jax-rs-application-on-the-root-context-how-can-it-be-done
-// https://github.com/gwizard/gwizard/tree/master/gwizard-web/src/main/java/org/gwizard/web
-// https://github.com/gwizard/gwizard/blob/master/gwizard-web/src/main/java/org/gwizard/web/WebServer.java

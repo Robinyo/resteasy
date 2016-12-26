@@ -19,7 +19,6 @@ import io.qbuddy.api.guice.HandlerScanner;
 
 public class JettyServer extends AbstractEmbeddedServer {
 
-    static final String DEFAULT_PORT = "8080";
     static final String CONTEXT_ROOT = "/";
 
     public static final int MIN_THREADS = 10;
@@ -27,18 +26,15 @@ public class JettyServer extends AbstractEmbeddedServer {
     public static final int IDLE_TIMEOUT = 30000;
     public static final int ACCEPT_QUEUE_SIZE = 60000;
 
-    private String port;
-
     private QueuedThreadPool threadPool;
     private int minThreads = MIN_THREADS;
     private int maxThreads = MAX_THREADS;
     private int idleTimeout = IDLE_TIMEOUT;
-    private int acceptQueueSize = IDLE_TIMEOUT;
+    private int acceptQueueSize = ACCEPT_QUEUE_SIZE;
 
     private Server server;
     private ServerConnector http;
     private ServletContextHandler context;
-
     private EventListenerScanner eventListenerScanner;
     private HandlerScanner handlerScanner;
     private HandlerCollection handlers;
@@ -52,15 +48,6 @@ public class JettyServer extends AbstractEmbeddedServer {
         this.eventListenerScanner = eventListenerScanner;
         this.handlerScanner = handlerScanner;
         this.handlers = handlers;
-
-        String port = System.getenv("PORT");
-
-        if (port == null || port.isEmpty()) {
-            port = DEFAULT_PORT;
-            log.info("PORT=" + DEFAULT_PORT);
-        }
-
-        log.info("Port: " + port);
     }
 
     private void build() {
@@ -68,11 +55,12 @@ public class JettyServer extends AbstractEmbeddedServer {
         if (server != null)
             return;
 
+        log.info("build()");
+
         this.threadPool = new QueuedThreadPool(maxThreads, minThreads, idleTimeout);
         this.server = new Server(threadPool);
         this.http = new ServerConnector(server);
-        // http.setPort(Integer.valueOf(port));
-        http.setPort(Integer.valueOf(8080));
+        http.setPort(port);
         http.setAcceptQueueSize(acceptQueueSize);
         server.addConnector(http);
 
@@ -103,6 +91,8 @@ public class JettyServer extends AbstractEmbeddedServer {
 
     public void run() throws Exception {
 
+        log.info("run()");
+
         server.setHandler(handlers);
         server.start();
         server.join();
@@ -125,4 +115,6 @@ public class JettyServer extends AbstractEmbeddedServer {
     }
 }
 
+// http://stackoverflow.com/questions/10874188/jax-rs-application-on-the-root-context-how-can-it-be-done
+// https://github.com/palominolabs/jetty-http-server-wrapper
 // https://github.com/puniverse/CascadingFailureExample/blob/master/src/main/java/co/paralleluniverse/examples/cascading/JettyServer.java
