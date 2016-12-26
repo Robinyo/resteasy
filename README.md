@@ -5,6 +5,7 @@ A step-by-step introduction to the RESTEasy framework.
 System Requirements:
 --------------------
 - OpenJDK for Java 1.8
+- Git
 - Maven 3.3.9 or higher
 
 OpenJDK for Java 1.8:

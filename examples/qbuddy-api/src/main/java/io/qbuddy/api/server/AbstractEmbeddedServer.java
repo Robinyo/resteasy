@@ -1,15 +1,8 @@
 package io.qbuddy.api.server;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import io.qbuddy.api.Main;
-
 public abstract class AbstractEmbeddedServer implements EmbeddedServer {
 
     protected int port;
-
-    protected static final Logger log = LoggerFactory.getLogger(Main.class);
 
     @Override
     public EmbeddedServer setPort(int port) {
@@ -17,3 +10,5 @@ public abstract class AbstractEmbeddedServer implements EmbeddedServer {
         return this;
     }
 }
+
+// https://github.com/puniverse/CascadingFailureExample/blob/master/src/main/java/co/paralleluniverse/examples/cascading/AbstractEmbeddedServer.java
