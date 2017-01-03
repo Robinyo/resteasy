@@ -35,7 +35,7 @@ Confirm the change:
     java -version
     javac -version
 
-Building the project:
+Clone the project:
 ---------------------
 
     git clone https://github.com/Robinyo/resteasy.git
