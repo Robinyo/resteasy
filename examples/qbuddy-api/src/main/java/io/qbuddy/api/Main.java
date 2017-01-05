@@ -1,3 +1,15 @@
+/**
+ * Application entry point class. 
+ *
+ * <p>
+ * If a basic description requires more than one sentence, include it in the first paragraph.
+ * Example of a second paragraph. Note the blank line between the first <p> tag
+ * and the end of the first paragraph.
+ * </p>
+ *
+ * @author Rob Ferguson
+ */
+
 package io.qbuddy.api;
 
 import javax.annotation.concurrent.ThreadSafe;
